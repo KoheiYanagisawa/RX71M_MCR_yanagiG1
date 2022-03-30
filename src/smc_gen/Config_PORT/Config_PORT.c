@@ -22,7 +22,7 @@
 * Version      : 2.1.3
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_PORT.
-* Creation Date: 2022-03-09
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -60,6 +60,14 @@ void R_Config_PORT_Create(void)
     PORT1.PCR.BYTE = _04_Pm2_PULLUP_ON | _08_Pm3_PULLUP_ON | _80_Pm7_PULLUP_ON;
     PORT1.PMR.BYTE = _00_Pm2_PIN_GPIO | _00_Pm3_PIN_GPIO | _00_Pm7_PIN_GPIO;
     PORT1.PDR.BYTE = _00_Pm2_MODE_INPUT | _00_Pm3_MODE_INPUT | _00_Pm7_MODE_INPUT | _03_PDR1_DEFAULT;
+
+    /* Set PORT2 registers */
+    PORT2.ODR0.BYTE = _00_Pm0_CMOS_OUTPUT | _00_Pm1_CMOS_OUTPUT;
+    PORT2.ODR1.BYTE = _00_Pm4_CMOS_OUTPUT | _00_Pm5_CMOS_OUTPUT | _00_Pm6_CMOS_OUTPUT;
+    PORT2.PCR.BYTE = _04_Pm2_PULLUP_ON | _08_Pm3_PULLUP_ON | _80_Pm7_PULLUP_ON;
+    PORT2.DSCR.BYTE = _01_Pm0_HIDRV_ON | _02_Pm1_HIDRV_ON | _10_Pm4_HIDRV_ON | _20_Pm5_HIDRV_ON | _40_Pm6_HIDRV_ON;
+    PORT2.PMR.BYTE = _00_Pm2_PIN_GPIO | _00_Pm3_PIN_GPIO | _00_Pm7_PIN_GPIO;
+    PORT2.PDR.BYTE = _00_Pm2_MODE_INPUT | _00_Pm3_MODE_INPUT | _00_Pm7_MODE_INPUT;
 
     /* Set PORT5 registers */
     PORT5.ODR0.BYTE = _00_Pm0_CMOS_OUTPUT | _00_Pm1_CMOS_OUTPUT | _00_Pm2_CMOS_OUTPUT;

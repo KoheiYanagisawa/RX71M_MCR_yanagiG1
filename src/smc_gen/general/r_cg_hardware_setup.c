@@ -22,7 +22,7 @@
 * Version      : 1.4.102
 * Device(s)    : R5F571MFCxFP
 * Description  : Initialization file for code generation configurations.
-* Creation Date: 2022-03-09
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -36,12 +36,12 @@ Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "Config_CMT0.h"
-#include "Config_MTU2.h"
 #include "Config_PORT.h"
 #include "Config_SCI12.h"
 #include "Config_SCI2.h"
 #include "Config_SCI1.h"
-#include "Config_TMR0.h"
+#include "Config_S12AD1.h"
+#include "Config_MTU4.h"
 #include "Config_S12AD0.h"
 #include "r_smc_cgc.h"
 #include "r_smc_interrupt.h"
@@ -94,11 +94,11 @@ void R_Systeminit(void)
     /* Set peripheral settings */
     R_Config_PORT_Create();
     R_Config_CMT0_Create();
-    R_Config_MTU2_Create();
     R_Config_SCI12_Create();
     R_Config_SCI2_Create();
     R_Config_SCI1_Create();
-    R_Config_TMR0_Create();
+    R_Config_S12AD1_Create();
+    R_Config_MTU4_Create();
     R_Config_S12AD0_Create();
 
     /* Set interrupt settings */
@@ -121,6 +121,12 @@ void R_Systeminit(void)
 
     /* Register group BL0 interrupt TEI12 (SCI12) */
     R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI12_TEI12,(bsp_int_cb_t)r_Config_SCI12_transmitend_interrupt);
+
+    /* Register group BL1 interrupt S12CMPI0 (S12AD0) */
+    R_BSP_InterruptWrite(BSP_INT_SRC_BL1_S12AD0_S12CMPI0,(bsp_int_cb_t)r_Config_S12AD0_compare_interrupt);
+
+    /* Register group BL1 interrupt S12CMPI1 (S12AD1) */
+    R_BSP_InterruptWrite(BSP_INT_SRC_BL1_S12AD1_S12CMPI1,(bsp_int_cb_t)r_Config_S12AD1_compare_interrupt);
 
     /* Disable writing to MPC pin function control registers */
     MPC.PWPR.BIT.PFSWE = 0U;

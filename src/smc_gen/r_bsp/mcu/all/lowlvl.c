@@ -69,10 +69,7 @@ char BSP_CFG_USER_CHARGET_FUNCTION(void);
 /***********************************************************************************************************************
 Private global variables and functions
 ***********************************************************************************************************************/
-void BSP_CFG_USER_CHARPUT_FUNCTION(char output_char){
-	while(!SCI1.SSR.BIT.TDRE);//TDRレジスタの中身が無くなるまで待つ
-	SCI1.TDR = output_char;//TDRレジスタに文字を格納
-}
+
 /***********************************************************************************************************************
 * Function Name: charput
 * Description  : Outputs a character on a serial port

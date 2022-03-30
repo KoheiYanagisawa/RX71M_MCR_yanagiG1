@@ -18,88 +18,44 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_TMR0.c
-* Version      : 1.7.0
+* File Name    : Config_S12AD1.h
+* Version      : 1.10.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_TMR0.
-* Creation Date: 2022-03-09
+* Description  : This file implements device driver for Config_S12AD1.
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
-/***********************************************************************************************************************
-Pragma directive
-***********************************************************************************************************************/
-/* Start user code for pragma. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
+#ifndef CFG_Config_S12AD1_H
+#define CFG_Config_S12AD1_H
 
 /***********************************************************************************************************************
 Includes
 ***********************************************************************************************************************/
-#include "r_cg_macrodriver.h"
-#include "Config_TMR0.h"
-/* Start user code for include. Do not edit comment generated here */
+#include "r_cg_s12ad.h"
+
+/***********************************************************************************************************************
+Macro definitions (Register bit)
+***********************************************************************************************************************/
+
+/***********************************************************************************************************************
+Macro definitions
+***********************************************************************************************************************/
+#define _78_AD1_SAMPLING_STATE_L           (0x78U) /* AN108-AN120 sampling time setting */
+
+/***********************************************************************************************************************
+Typedef definitions
+***********************************************************************************************************************/
+
+/***********************************************************************************************************************
+Global functions
+***********************************************************************************************************************/
+void R_Config_S12AD1_Create(void);
+void R_Config_S12AD1_Create_UserInit(void);
+void R_Config_S12AD1_Start(void);
+void R_Config_S12AD1_Stop(void);
+void R_Config_S12AD1_Get_ValueResult(ad_channel_t channel, uint16_t * const buffer);
+void R_Config_S12AD1_Set_CompareValue(uint16_t reg_value0,uint16_t reg_value1);
+void r_Config_S12AD1_compare_interrupt(void);
+/* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-#include "r_cg_userdefine.h"
-
-/***********************************************************************************************************************
-Global variables and functions
-***********************************************************************************************************************/
-/* Start user code for global. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
-
-/***********************************************************************************************************************
-* Function Name: R_Config_TMR0_Create
-* Description  : This function initializes the TMR0 channel
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-
-void R_Config_TMR0_Create(void)
-{
-
-    /* Cancel TMR module stop state */
-    MSTP(TMR01) = 0U;
-
-    /* Set counter clear and interrupt */
-    TMR0.TCR.BYTE = _00_TMR_CNT_CLR_DISABLE | _00_TMR_CMIA_INT_DISABLE | _00_TMR_CMIB_INT_DISABLE | 
-                    _00_TMR_OVI_INT_DISABLE;
-
-    /* Set A/D trigger and output */
-    TMR0.TCSR.BYTE = _00_TMR_AD_TRIGGER_DISABLE | _E0_TMR02_TCSR_DEFAULT;
-
-    /* Set compare match value */ 
-    TMR0.TCORA = _77_TMR0_COMP_MATCH_VALUE_A;
-    TMR0.TCORB = _77_TMR0_COMP_MATCH_VALUE_B;
-
-    R_Config_TMR0_Create_UserInit();
-}
-
-/***********************************************************************************************************************
-* Function Name: R_Config_TMR0_Start
-* Description  : This function starts the TMR0 channel
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-
-void R_Config_TMR0_Start(void)
-{
-
-    /*Start counting*/
-    TMR0.TCCR.BYTE = _08_TMR_CLK_SRC_PCLK | _00_TMR_PCLK_DIV_1;
-}
-
-/***********************************************************************************************************************
-* Function Name: R_Config_TMR0_Stop
-* Description  : This function stop the TMR0 channel
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-
-void R_Config_TMR0_Stop(void)
-{
-
-    /*Stop counting*/ 
-    TMR0.TCCR.BYTE = _00_TMR_CLK_DISABLED;
-}
-
-/* Start user code for adding. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
+#endif

@@ -19,6 +19,6 @@ void led_out (uint8_t RGB){
 	if ( (RGB & 0x2) == 0x2 ) PORTB.PODR.BIT.B2 = 0;
 	else PORTB.PODR.BIT.B2 = 1;
 	
-	if ( (RGB & 0x1) == 1 ) PORTB.PODR.BIT.B0 = 0;
+	if ( (RGB & 0x1) == 0x1 ) PORTB.PODR.BIT.B0 = 0;
 	else PORTB.PODR.BIT.B0 = 1;
 }

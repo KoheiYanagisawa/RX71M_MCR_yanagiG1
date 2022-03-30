@@ -11,4 +11,11 @@
         "${workspaceFolder}/**",
         "C:\\Program Files (x86)\\Renesas Electronics\\CS+\\CC\\CC-RX\\V3.03.00\\include\\**"
     ],
+    "files.associations": {
+        "r_cg_s12ad.h": "c",
+        "r_smc_entry.h": "c",
+        "r_cg_macrodriver.h": "c",
+        "platform.h": "c",
+        "r_bsp.h": "c"
+    },
 }

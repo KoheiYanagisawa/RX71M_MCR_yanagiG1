@@ -22,7 +22,7 @@
 * Version      : 1.4.102
 * Device(s)    : R5F571MFCxFP
 * Description  : General header file for RSPI peripheral.
-* Creation Date: 2022-03-09
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 #ifndef RSPI_H

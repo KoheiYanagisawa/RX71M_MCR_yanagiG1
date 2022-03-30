@@ -18,20 +18,20 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_TMR0.h
-* Version      : 1.7.0
+* File Name    : Config_MTU4.h
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_TMR0.
-* Creation Date: 2022-03-09
+* Description  : This file implements device driver for Config_MTU4.
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
-#ifndef CFG_Config_TMR0_H
-#define CFG_Config_TMR0_H
+#ifndef CFG_Config_MTU4_H
+#define CFG_Config_MTU4_H
 
 /***********************************************************************************************************************
 Includes
 ***********************************************************************************************************************/
-#include "r_cg_tmr.h"
+#include "r_cg_mtu3.h"
 
 /***********************************************************************************************************************
 Macro definitions (Register bit)
@@ -40,9 +40,11 @@ Macro definitions (Register bit)
 /***********************************************************************************************************************
 Macro definitions
 ***********************************************************************************************************************/
-#define TMR0_PCLK_COUNTER_DIVISION                    (1)
-#define _77_TMR0_COMP_MATCH_VALUE_A                   (0x77U)
-#define _77_TMR0_COMP_MATCH_VALUE_B                   (0x77U)
+#define MTU4_PCLK_COUNTER_DIVISION      (1)
+#define _0000_TGRA4_VALUE               (0x0000U) /* TGRA4 value */
+#define _0000_TGRB4_VALUE               (0x0000U) /* TGRB4 value */
+#define _176F_TGRC4_VALUE               (0x176FU) /* TGRC4 value */
+#define _0000_TGRD4_VALUE               (0x0000U) /* TGRD4 value */
 
 /***********************************************************************************************************************
 Typedef definitions
@@ -51,10 +53,10 @@ Typedef definitions
 /***********************************************************************************************************************
 Global functions
 ***********************************************************************************************************************/
-void R_Config_TMR0_Create(void);
-void R_Config_TMR0_Create_UserInit(void);
-void R_Config_TMR0_Start(void);
-void R_Config_TMR0_Stop(void);
+void R_Config_MTU4_Create(void);
+void R_Config_MTU4_Create_UserInit(void);
+void R_Config_MTU4_Start(void);
+void R_Config_MTU4_Stop(void);
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #endif

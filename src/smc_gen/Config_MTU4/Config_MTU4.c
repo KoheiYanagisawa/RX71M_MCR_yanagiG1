@@ -18,11 +18,11 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_MTU2.c
-* Version      : 2.1.1
+* File Name    : Config_MTU4.c
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_MTU2.
-* Creation Date: 2022-03-09
+* Description  : This file implements device driver for Config_MTU4.
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -35,7 +35,7 @@ Pragma directive
 Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
-#include "Config_MTU2.h"
+#include "Config_MTU4.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
@@ -47,74 +47,72 @@ Global variables and functions
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: R_Config_MTU2_Create
-* Description  : This function initializes the MTU2 channel
+* Function Name: R_Config_MTU4_Create
+* Description  : This function initializes the MTU4 channel
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Config_MTU2_Create(void)
+void R_Config_MTU4_Create(void)
 {
-    /* Release MTU channel 2 from stop state */
-    MSTP(MTU2) = 0U;
+    /* Release MTU channel 4 from stop state */
+    MSTP(MTU4) = 0U;
 
-    /* Stop MTU channel 2 counter */
-    MTU.TSTRA.BIT.CST2 = 0U;
+    /* Enable read/write to MTU4 registers */
+    MTU.TRWERA.BIT.RWE = 1U;
 
-    /* Set external clock noise filter */
-    MTU0.NFCRC.BIT.NFAEN = 0U;
-    MTU0.NFCRC.BIT.NFBEN = 0U;
+    /* Stop MTU channel 4 counter */
+    MTU.TSTRA.BIT.CST4 = 0U;
 
-    /* MTU channel 2 is used as phase counting mode */
-    MTU2.TMDR1.BYTE = _04_MTU_COT1;
-    MTU1.TMDR3.BIT.PHCKSEL = 0U;
-    MTU.TSYRA.BIT.SYNC2 = 0U;
-    MTU2.TCR.BYTE = _00_MTU_CKCL_DIS;
-    MTU2.TIER.BYTE = _00_MTU_TGIEA_DISABLE | _00_MTU_TGIEB_DISABLE | _00_MTU_TCIEV_DISABLE | _00_MTU_TCIEU_DISABLE | 
-                     _00_MTU_TTGE_DISABLE;
-    MTU2.TIOR.BYTE = _00_MTU_IOA_DISABLE | _10_MTU_IOB_LL;
-    MTU2.TGRA = _0063_TGRA2_VALUE;
-    MTU2.TGRB = _0063_TGRB2_VALUE;
+    /* MTU channel 4 is used as PWM mode 1 */
+    MTU.TSYRA.BIT.SYNC4 = 0U;
+    MTU.TOERA.BYTE |= (_D0_MTU_OE4C_ENABLE);
+    MTU4.TCR.BYTE = _00_MTU_PCLK_1 | _A0_MTU_CKCL_C;
+    MTU4.TCR2.BYTE = _00_MTU_PCLK_1;
+    MTU4.TIER.BYTE = _00_MTU_TGIEA_DISABLE | _00_MTU_TGIEB_DISABLE | _00_MTU_TGIEC_DISABLE | _00_MTU_TGIED_DISABLE | 
+                     _00_MTU_TCIEV_DISABLE | _00_MTU_TTGE_DISABLE;
+    MTU4.TMDR1.BYTE = _02_MTU_PWM1;
+    MTU4.TIORH.BYTE = _00_MTU_IOA_DISABLE;
+    MTU4.TIORL.BYTE = _02_MTU_IOC_LH | _50_MTU_IOD_HL;
+    MTU4.TGRA = _0000_TGRA4_VALUE;
+    MTU4.TGRB = _0000_TGRB4_VALUE;
+    MTU4.TGRC = _176F_TGRC4_VALUE;
+    MTU4.TGRD = _0000_TGRD4_VALUE;
 
-    /* Set MTCLKA pin */
-    MPC.P24PFS.BYTE = 0x02U;
-    PORT2.PMR.BYTE |= 0x10U;
+    /* Disable read/write to MTU4 registers */
+    MTU.TRWERA.BIT.RWE = 0U;
 
-    /* Set MTCLKB pin */
-    MPC.P25PFS.BYTE = 0x02U;
-    PORT2.PMR.BYTE |= 0x20U;
-
-    /* Set MTIOC2B pin */
-    MPC.PE5PFS.BYTE = 0x02U;
+    /* Set MTIOC4C pin */
+    MPC.PE5PFS.BYTE = 0x01U;
     PORTE.PMR.BYTE |= 0x20U;
 
-    R_Config_MTU2_Create_UserInit();
+    R_Config_MTU4_Create_UserInit();
 }
 
 /***********************************************************************************************************************
-* Function Name: R_Config_MTU2_Start
-* Description  : This function starts the MTU2 channel counter
+* Function Name: R_Config_MTU4_Start
+* Description  : This function starts the MTU4 channel counter
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Config_MTU2_Start(void)
+void R_Config_MTU4_Start(void)
 {
-    /* Start MTU channel 2 counter */
-    MTU.TSTRA.BIT.CST2 = 1U;
+    /* Start MTU channel 4 counter */
+    MTU.TSTRA.BIT.CST4 = 1U;
 }
 
 /***********************************************************************************************************************
-* Function Name: R_Config_MTU2_Stop
-* Description  : This function stops the MTU2 channel counter
+* Function Name: R_Config_MTU4_Stop
+* Description  : This function stops the MTU4 channel counter
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Config_MTU2_Stop(void)
+void R_Config_MTU4_Stop(void)
 {
-    /* Stop MTU channel 2 counter */
-    MTU.TSTRA.BIT.CST2 = 0U;
+    /* Stop MTU channel 4 counter */
+    MTU.TSTRA.BIT.CST4 = 0U;
 }
 
 /* Start user code for adding. Do not edit comment generated here */

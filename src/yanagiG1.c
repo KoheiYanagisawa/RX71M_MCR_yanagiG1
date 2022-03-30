@@ -18,13 +18,69 @@
  *********************************************************************************************************************/
 /***********************************************************************/
 /*                                                                     */
-/*  FILE        :lowsrc.h                                              */
+/*  FILE        :Main.c or Main.cpp                                    */
 /*  DATE        :Tue, Oct 31, 2006                                     */
-/*  DESCRIPTION :Header file of I/O Stream file                        */
+/*  DESCRIPTION :Main Program                                          */
 /*  CPU TYPE    :                                                      */
 /*                                                                     */
 /*  NOTE:THIS IS A TYPICAL EXAMPLE.                                    */
 /*                                                                     */
 /***********************************************************************/
-/*Number of I/O Stream*/
-#define IOSTREAM 20
+//#include "typedefine.h"
+#include "r_smc_entry.h"  //スマートコンフィグレータ用のライブラリ
+#include <stdio.h>
+#include "I2c_LCD.h"
+#include "IMU_ICM20648.h"
+#include "timer.h"
+#include "AD12.h"
+#include "sw.h"
+#ifdef __cplusplus
+//#include <ios>                        // Remove the comment when you use ios
+//_SINT ios_base::Init::init_cnt;       // Remove the comment when you use ios
+#endif
+
+void main(void);
+#ifdef __cplusplus
+extern "C" {
+void abort(void);
+}
+#endif
+
+void main(void)
+{
+	// LCD
+	R_Config_SCI12_Start();
+	inti_lcd();
+	//タイマ割り込み開始
+	R_Config_CMT0_Start();
+	// PWM出力開始
+	R_Config_MTU4_Start();
+	//A/D変換開始
+	R_Config_S12AD0_Start();
+	R_Config_S12AD1_Start();
+	printf("hello2");
+	MTU4.TGRD = 5998;//トレースセンサー用PWM
+	led_out(0x1);
+	while(1){
+		if(cnt0 == 250){
+			int num1 = 0,num2 = 0;
+			num1  = getRotarysw();
+			num2 = getTactsw();
+			//printf(" %d | %d\n\r",num1,num2);
+			printf(" %d | %d | %d | %d | %d\n\r",sensor1,sensor2,sensor3,sensor4,sensor5);
+
+			cnt0 = 0;
+		}
+
+
+
+
+	}
+}
+
+#ifdef __cplusplus
+void abort(void)
+{
+
+}
+#endif

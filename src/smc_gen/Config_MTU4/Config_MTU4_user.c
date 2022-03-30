@@ -18,11 +18,11 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_TMR0_user.c
-* Version      : 1.7.0
+* File Name    : Config_MTU4_user.c
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_TMR0.
-* Creation Date: 2022-03-09
+* Description  : This file implements device driver for Config_MTU4.
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -35,7 +35,7 @@ Pragma directive
 Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
-#include "Config_TMR0.h"
+#include "Config_MTU4.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
@@ -47,13 +47,13 @@ Global variables and functions
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: R_Config_TMR0_Create_UserInit
-* Description  : This function adds user code after initializing TMR
+* Function Name: R_Config_MTU4_Create_UserInit
+* Description  : This function adds user code after initializing the MTU4 channel
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Config_TMR0_Create_UserInit(void)
+void R_Config_MTU4_Create_UserInit(void)
 {
     /* Start user code for user init. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */

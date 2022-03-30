@@ -22,7 +22,7 @@
 * Version      : 1.4.102
 * Device(s)    : R5F571MFCxFP
 * Description  : SMC platform header file.
-* Creation Date: 2022-03-09
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 #ifndef SMC_ENTRY_H
@@ -33,12 +33,12 @@ Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "Config_CMT0.h"
-#include "Config_MTU2.h"
 #include "Config_PORT.h"
 #include "Config_SCI12.h"
 #include "Config_SCI2.h"
 #include "Config_SCI1.h"
-#include "Config_TMR0.h"
+#include "Config_S12AD1.h"
+#include "Config_MTU4.h"
 #include "Config_S12AD0.h"
 
 /***********************************************************************************************************************

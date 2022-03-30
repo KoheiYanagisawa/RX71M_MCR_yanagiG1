@@ -19,10 +19,10 @@
 
 /***********************************************************************************************************************
 * File Name    : Config_S12AD0_user.c
-* Version      : 2.2.1
+* Version      : 1.10.1
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_S12AD0.
-* Creation Date: 2022-03-09
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -75,7 +75,21 @@ void R_Config_S12AD0_Create_UserInit(void)
 static void r_Config_S12AD0_interrupt(void)
 {
     /* Start user code for r_Config_S12AD0_interrupt. Do not edit comment generated here */
-    //inttrruptAD0();
+    inttrruptAD0();
+    /* End user code. Do not edit comment generated here */
+}
+
+/***********************************************************************************************************************
+* Function Name: r_Config_S12AD0_compare_interrupt
+* Description  : This function is S12CMPI interrupt service routine
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+
+void r_Config_S12AD0_compare_interrupt(void)
+{
+    /* Start user code for r_Config_S12AD0_compare_interrupt. Do not edit comment generated here */
+    
     /* End user code. Do not edit comment generated here */
 }
 

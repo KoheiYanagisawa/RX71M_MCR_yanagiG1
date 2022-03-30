@@ -22,7 +22,7 @@
 * Version      : 1.9.2
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_SCI1.
-* Creation Date: 2022-03-09
+* Creation Date: 2022-03-28
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -158,4 +158,8 @@ void r_Config_SCI1_receiveerror_interrupt(void)
 }
 
 /* Start user code for adding. Do not edit comment generated here */
+void BSP_CFG_USER_CHARPUT_FUNCTION(char output_char){
+	while(!SCI1.SSR.BIT.TDRE);//TDRレジスタの中身が無くなるまで待つ
+	SCI1.TDR = output_char;//TDRレジスタに文字を格納
+}
 /* End user code. Do not edit comment generated here */

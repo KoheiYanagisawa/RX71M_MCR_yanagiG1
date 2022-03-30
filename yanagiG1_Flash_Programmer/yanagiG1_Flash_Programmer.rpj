@@ -6,8 +6,7 @@
   <Device>RX710</Device>
   <OperationTab>
     <Endian>RFLG_ENDIAN_LITTLE</Endian>
-    <ProgramFile>
-    </ProgramFile>
+    <ProgramFile>C:\Users\yanah\RX71M_yanagiG1\yanagiG1\DefaultBuild\yanagiG1.mot</ProgramFile>
   </OperationTab>
   <OperationSettingTab>
     <FillCode>False</FillCode>

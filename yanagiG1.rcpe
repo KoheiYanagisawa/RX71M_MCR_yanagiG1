@@ -7,17 +7,11 @@
   </Placeholders>
   <Project Name="yanagiG1" Type="Application">
     <Files>
-      <Path>yanagiG1.c</Path>
       <Category Name="Smart Configurator">
         <Category Name="Config_CMT0">
           <Path>src\smc_gen\Config_CMT0\Config_CMT0.c</Path>
           <Path>src\smc_gen\Config_CMT0\Config_CMT0.h</Path>
           <Path>src\smc_gen\Config_CMT0\Config_CMT0_user.c</Path>
-        </Category>
-        <Category Name="Config_MTU2">
-          <Path>src\smc_gen\Config_MTU2\Config_MTU2.c</Path>
-          <Path>src\smc_gen\Config_MTU2\Config_MTU2.h</Path>
-          <Path>src\smc_gen\Config_MTU2\Config_MTU2_user.c</Path>
         </Category>
         <Category Name="Config_PORT">
           <Path>src\smc_gen\Config_PORT\Config_PORT.c</Path>
@@ -49,7 +43,6 @@
           <Path>src\smc_gen\general\r_cg_rspi.h</Path>
           <Path>src\smc_gen\general\r_cg_scif.h</Path>
           <Path>src\smc_gen\general\r_cg_s12ad.h</Path>
-          <Path>src\smc_gen\general\r_cg_tmr.h</Path>
         </Category>
         <Category Name="r_bsp">
           <Path>src\smc_gen\r_bsp\platform.h</Path>
@@ -149,24 +142,32 @@
           <Path>src\smc_gen\Config_S12AD0\Config_S12AD0.h</Path>
           <Path>src\smc_gen\Config_S12AD0\Config_S12AD0_user.c</Path>
         </Category>
-        <Category Name="Config_TMR0">
-          <Path>src\smc_gen\Config_TMR0\Config_TMR0.c</Path>
-          <Path>src\smc_gen\Config_TMR0\Config_TMR0.h</Path>
-          <Path>src\smc_gen\Config_TMR0\Config_TMR0_user.c</Path>
+        <Category Name="Config_S12AD1">
+          <Path>src\smc_gen\Config_S12AD1\Config_S12AD1.c</Path>
+          <Path>src\smc_gen\Config_S12AD1\Config_S12AD1.h</Path>
+          <Path>src\smc_gen\Config_S12AD1\Config_S12AD1_user.c</Path>
+        </Category>
+        <Category Name="Config_MTU4">
+          <Path>src\smc_gen\Config_MTU4\Config_MTU4.c</Path>
+          <Path>src\smc_gen\Config_MTU4\Config_MTU4.h</Path>
+          <Path>src\smc_gen\Config_MTU4\Config_MTU4_user.c</Path>
         </Category>
       </Category>
       <Category Name="Src">
-        <Path>I2C_LCD.c</Path>
-        <Path>LED.c</Path>
-        <Path>IMU_ICM20648.c</Path>
-        <Path>AD12.c</Path>
+        <Path>src\I2C_LCD.c</Path>
+        <Path>src\IMU_ICM20648.c</Path>
+        <Path>src\LED.c</Path>
+        <Path>src\yanagiG1.c</Path>
+        <Path>src\AD12.c</Path>
+        <Path>src\sw.c</Path>
       </Category>
       <Category Name="Inc">
-        <Path>I2C_LCD.h</Path>
-        <Path>LED.h</Path>
-        <Path>IMU_ICM20648.h</Path>
-        <Path>timer.h</Path>
-        <Path>AD12.h</Path>
+        <Path>inc\AD12.h</Path>
+        <Path>inc\I2C_LCD.h</Path>
+        <Path>inc\IMU_ICM20648.h</Path>
+        <Path>inc\LED.h</Path>
+        <Path>inc\timer.h</Path>
+        <Path>inc\sw.h</Path>
       </Category>
     </Files>
     <DebugOptions>
@@ -184,7 +185,9 @@
           <Option>-isa=rxv2</Option>
           <Option>-fpu</Option>
           <Option>-lang=c99</Option>
-          <Option>-include=src\smc_gen\Config_TMR0</Option>
+          <Option>-include=src\smc_gen\Config_MTU4</Option>
+          <Option>-include=src\smc_gen\Config_S12AD1</Option>
+          <Option>-include=inc</Option>
           <Option>-include=src\smc_gen\Config_S12AD0</Option>
           <Option>-include=src\smc_gen\Config_SCI1</Option>
           <Option>-include=src\smc_gen\Config_SCI2</Option>
@@ -200,7 +203,6 @@
           <Option>-include=src\smc_gen\general</Option>
           <Option>-include=src\smc_gen\Config_SCI12</Option>
           <Option>-include=src\smc_gen\Config_PORT</Option>
-          <Option>-include=src\smc_gen\Config_MTU2</Option>
           <Option>-include=src\smc_gen\Config_CMT0</Option>
           <Option>-output=obj=%BuildModeName%\%FileLeaf%.obj</Option>
           <Option>-debug</Option>
@@ -239,11 +241,8 @@
           <GenerateMode>BuildOptionChanged</GenerateMode>
         </LibraryGenerateOptions>
         <LinkOrder>
-          <Path>DefaultBuild\yanagiG1.obj</Path>
           <Path>DefaultBuild\Config_CMT0.obj</Path>
           <Path>DefaultBuild\Config_CMT0_user.obj</Path>
-          <Path>DefaultBuild\Config_MTU2.obj</Path>
-          <Path>DefaultBuild\Config_MTU2_user.obj</Path>
           <Path>DefaultBuild\Config_PORT.obj</Path>
           <Path>DefaultBuild\Config_PORT_user.obj</Path>
           <Path>DefaultBuild\Config_SCI12.obj</Path>
@@ -272,21 +271,27 @@
           <Path>DefaultBuild\mcu_mapped_interrupts.obj</Path>
           <Path>DefaultBuild\vecttbl.obj</Path>
           <Path>DefaultBuild\Pin.obj</Path>
-          <Path>DefaultBuild\I2C_LCD.obj</Path>
-          <Path>DefaultBuild\LED.obj</Path>
           <Path>DefaultBuild\Config_SCI2.obj</Path>
           <Path>DefaultBuild\Config_SCI2_user.obj</Path>
-          <Path>DefaultBuild\IMU_ICM20648.obj</Path>
           <Path>DefaultBuild\Config_SCI1.obj</Path>
           <Path>DefaultBuild\Config_SCI1_user.obj</Path>
           <Path>DefaultBuild\Config_S12AD0.obj</Path>
           <Path>DefaultBuild\Config_S12AD0_user.obj</Path>
-          <Path>DefaultBuild\Config_TMR0.obj</Path>
-          <Path>DefaultBuild\Config_TMR0_user.obj</Path>
+          <Path>DefaultBuild\I2C_LCD.obj</Path>
+          <Path>DefaultBuild\IMU_ICM20648.obj</Path>
+          <Path>DefaultBuild\LED.obj</Path>
+          <Path>DefaultBuild\yanagiG1.obj</Path>
           <Path>DefaultBuild\AD12.obj</Path>
+          <Path>DefaultBuild\Config_S12AD1.obj</Path>
+          <Path>DefaultBuild\Config_S12AD1_user.obj</Path>
+          <Path>DefaultBuild\Config_MTU4.obj</Path>
+          <Path>DefaultBuild\Config_MTU4_user.obj</Path>
+          <Path>DefaultBuild\sw.obj</Path>
         </LinkOrder>
         <CommonOptions>
-          <IncludePathForC>src\smc_gen\Config_TMR0</IncludePathForC>
+          <IncludePathForC>src\smc_gen\Config_MTU4</IncludePathForC>
+          <IncludePathForC>src\smc_gen\Config_S12AD1</IncludePathForC>
+          <IncludePathForC>inc</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_S12AD0</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_SCI1</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_SCI2</IncludePathForC>
@@ -302,7 +307,6 @@
           <IncludePathForC>src\smc_gen\general</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_SCI12</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_PORT</IncludePathForC>
-          <IncludePathForC>src\smc_gen\Config_MTU2</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_CMT0</IncludePathForC>
         </CommonOptions>
       </BuildMode>
