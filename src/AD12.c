@@ -5,10 +5,19 @@
 //====================================
 // グローバル変数の宣言
 //====================================
-uint16_t A0_Sen[8];
-uint16_t A1_Sen[14];
 
-int sensorLL,sensorL,sensorC,sensorR,sensorRR;
+
+//　タイマ関連
+static char				ADTimer10;	// AD変換カウント用
+
+//　センサ関連
+//  AD変換結果格納
+uint16_t            A0_Sen[8];              //AD0チャンネルの格納先
+uint16_t            A1_Sen[14];             //AD1チャンネルの格納先
+
+short               Angle0;                 //サーボセンター値
+short	            sensorG_th = GATE_VAL;	// ゲート開放しきい値
+
 
 ///////////////////////////////////////////////////
 // モジュール名 inttrruptAD0
