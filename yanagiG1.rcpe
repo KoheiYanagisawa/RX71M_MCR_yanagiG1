@@ -160,6 +160,8 @@
         <Path>src\yanagiG1.c</Path>
         <Path>src\AD12.c</Path>
         <Path>src\sw.c</Path>
+        <Path>Rotaryencoder.c</Path>
+        <Path>motor.c</Path>
       </Category>
       <Category Name="Inc">
         <Path>inc\AD12.h</Path>
@@ -168,6 +170,8 @@
         <Path>inc\LED.h</Path>
         <Path>inc\timer.h</Path>
         <Path>inc\sw.h</Path>
+        <Path>Rotaryencoder.h</Path>
+        <Path>motor.h</Path>
       </Category>
     </Files>
     <DebugOptions>
@@ -287,6 +291,8 @@
           <Path>DefaultBuild\Config_MTU4.obj</Path>
           <Path>DefaultBuild\Config_MTU4_user.obj</Path>
           <Path>DefaultBuild\sw.obj</Path>
+          <Path>DefaultBuild\Rotaryencoder.obj</Path>
+          <Path>DefaultBuild\motor.obj</Path>
         </LinkOrder>
         <CommonOptions>
           <IncludePathForC>src\smc_gen\Config_MTU4</IncludePathForC>
