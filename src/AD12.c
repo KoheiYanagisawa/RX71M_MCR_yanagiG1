@@ -42,6 +42,3 @@ void inttrruptAD1(void) {
     R_Config_S12AD1_Get_ValueResult(ADCHANNEL8,&sensor2);
     R_Config_S12AD1_Get_ValueResult(ADCHANNEL9,&sensor1);
 }
-void sensorthreshold(){
-      
-}
