@@ -7,13 +7,17 @@
 //====================================//
 // シンボル定義						   //
 //====================================//
-#define sensor1             A1_Sen[10]
-#define sensor2             A1_Sen[9]
-#define sensor3             A0_Sen[7]
-#define sensor4             A0_Sen[6]
-#define sensor5             A0_Sen[5]
-#define gatesensor          A0_Sen[4]
-#define potentio            A0_Sen[2]
+#define sensorRR            A1_Sen[10]          //最右端アナログセンサ
+#define sensorR             A1_Sen[9]           //右アナログセンサ
+#define sensorC             A0_Sen[7]           //中心アナログセンサ
+#define sensorL             A0_Sen[6]           //左アナログセンサ
+#define sensorLL            A0_Sen[5]           //最左端アナログセンサ
+#define gatesensor          A0_Sen[4]           //ゲートセンサ
+#define potentio            A0_Sen[2]           //ポテンショメータ
+
+#define GATE_VAL			190		            // ゲートセンサしきい値
+#define DEG2AD              41                  // 1度あたりのAD値 サーボ最大切れ角時のAD値[]/サーボ最大切れ角[°]
+#define AD2DEG              0.0247F             // 1ADあたりの角度 サーボ最大切れ角[°]/サーボ最大切れ角時のAD値[]
 //====================================//
 // グローバル変数の宣言				    //
 //====================================//
