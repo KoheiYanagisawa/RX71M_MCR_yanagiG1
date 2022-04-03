@@ -24,6 +24,15 @@
 #define DIR_RR			PORTC.PODR.BIT.B2
 #define SR_RR			PORTC.PODR.BIT.B3
 #define PWM_RR_OUT	    MTU0.TGRD = pwmrr
+//ここから↓要変更
+// 左前輪
+#define DIR_FL			PORTC.PODR.BIT.B2
+#define SR_FL			PORTC.PODR.BIT.B3
+#define PWM_FL_OUT	    MTU0.TGRD = pwmfl
+// 右前輪
+#define DIR_FR			PORTC.PODR.BIT.B2
+#define SR_FR			PORTC.PODR.BIT.B3
+#define PWM_FR_OUT	    MTU0.TGRD = pwmfr
 //====================================//
 // グローバル変数の宣言					//
 //====================================//
