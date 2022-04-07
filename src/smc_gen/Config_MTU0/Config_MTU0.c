@@ -18,10 +18,10 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : r_cg_hardware_setup.c
-* Version      : 1.4.102
+* File Name    : Config_MTU0.c
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : Initialization file for code generation configurations.
+* Description  : This file implements device driver for Config_MTU0.
 * Creation Date: 2022-04-07
 ***********************************************************************************************************************/
 
@@ -35,17 +35,7 @@ Pragma directive
 Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
-#include "Config_CMT0.h"
-#include "Config_PORT.h"
-#include "Config_SCI12.h"
-#include "Config_SCI2.h"
-#include "Config_SCI1.h"
-#include "Config_S12AD1.h"
-#include "Config_MTU4.h"
-#include "Config_S12AD0.h"
 #include "Config_MTU0.h"
-#include "r_smc_cgc.h"
-#include "r_smc_interrupt.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
@@ -57,85 +47,72 @@ Global variables and functions
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: r_undefined_exception
-* Description  : This function is undefined interrupt service routine
+* Function Name: R_Config_MTU0_Create
+* Description  : This function initializes the MTU0 channel
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void r_undefined_exception(void)
+void R_Config_MTU0_Create(void)
 {
-    /* Start user code for r_undefined_exception. Do not edit comment generated here */
-    /* End user code. Do not edit comment generated here */
+    /* Release MTU channel 0 from stop state */
+    MSTP(MTU0) = 0U;
+
+    /* Stop MTU channel 0 counter */
+    MTU.TSTRA.BIT.CST0 = 0U;
+
+    /* MTU channel 0 is used as PWM mode 1 */
+    MTU.TSYRA.BIT.SYNC0 = 0U;
+    MTU0.TCR.BYTE = _00_MTU_PCLK_1 | _20_MTU_CKCL_A;
+    MTU0.TCR2.BYTE = _00_MTU_PCLK_1;
+    MTU0.TIER.BYTE = _00_MTU_TGIEA_DISABLE | _00_MTU_TGIEB_DISABLE | _00_MTU_TGIEC_DISABLE | _00_MTU_TGIED_DISABLE | 
+                     _00_MTU_TCIEV_DISABLE | _00_MTU_TTGE_DISABLE;
+    MTU0.TIER2.BYTE = _00_MTU_TGIEE_DISABLE | _00_MTU_TGIEF_DISABLE | _00_MTU_TTGE2_DISABLE;
+    MTU0.TMDR1.BYTE = _02_MTU_PWM1;
+    MTU0.TIORH.BYTE = _02_MTU_IOA_LH | _50_MTU_IOB_HL;
+    MTU0.TIORL.BYTE = _02_MTU_IOC_LH | _50_MTU_IOD_HL;
+    MTU0.TGRA = _176F_TGRA0_VALUE;
+    MTU0.TGRB = _0000_TGRB0_VALUE;
+    MTU0.TGRC = _176F_TGRC0_VALUE;
+    MTU0.TGRD = _0000_TGRD0_VALUE;
+    MTU0.TGRE = _0064_TGRE0_VALUE;
+    MTU0.TGRF = _0064_TGRF0_VALUE;
+
+    /* Set MTIOC0A pin */
+    MPC.PB3PFS.BYTE = 0x01U;
+    PORTB.PMR.BYTE |= 0x08U;
+
+    /* Set MTIOC0C pin */
+    MPC.PB1PFS.BYTE = 0x01U;
+    PORTB.PMR.BYTE |= 0x02U;
+
+    R_Config_MTU0_Create_UserInit();
 }
 
 /***********************************************************************************************************************
-* Function Name: R_Systeminit
-* Description  : This function initializes every configuration
+* Function Name: R_Config_MTU0_Start
+* Description  : This function starts the MTU0 channel counter
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Systeminit(void)
+void R_Config_MTU0_Start(void)
 {
-    /* Enable writing to registers related to operating modes, LPC, CGC and software reset */
-    SYSTEM.PRCR.WORD = 0xA50BU;
+    /* Start MTU channel 0 counter */
+    MTU.TSTRA.BIT.CST0 = 1U;
+}
 
-    /* Enable writing to MPC pin function control registers */
-    MPC.PWPR.BIT.B0WI = 0U;
-    MPC.PWPR.BIT.PFSWE = 1U;
+/***********************************************************************************************************************
+* Function Name: R_Config_MTU0_Stop
+* Description  : This function stops the MTU0 channel counter
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
 
-    /* Write 0 to the target bits in the POECR2 and POECR3 registers */
-    POE3.POECR2.WORD = 0x0000U;
-    POE3.POECR3.WORD = 0x0000U;
-
-    /* Initialize clocks settings */
-    R_CGC_Create();
-
-    /* Set peripheral settings */
-    R_Config_PORT_Create();
-    R_Config_CMT0_Create();
-    R_Config_SCI12_Create();
-    R_Config_SCI2_Create();
-    R_Config_SCI1_Create();
-    R_Config_S12AD1_Create();
-    R_Config_MTU4_Create();
-    R_Config_S12AD0_Create();
-    R_Config_MTU0_Create();
-
-    /* Set interrupt settings */
-    R_Interrupt_Create();
-
-    /* Register undefined interrupt */
-    R_BSP_InterruptWrite(BSP_INT_SRC_UNDEFINED_INTERRUPT,(bsp_int_cb_t)r_undefined_exception);
-
-    /* Register group BL0 interrupt TEI1 (SCI1) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI1_TEI1,(bsp_int_cb_t)r_Config_SCI1_transmitend_interrupt);
-
-    /* Register group BL0 interrupt ERI1 (SCI1) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI1_ERI1,(bsp_int_cb_t)r_Config_SCI1_receiveerror_interrupt);
-
-    /* Register group BL0 interrupt TEI2 (SCI2) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI2_TEI2,(bsp_int_cb_t)r_Config_SCI2_transmitend_interrupt);
-
-    /* Register group BL0 interrupt ERI2 (SCI2) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI2_ERI2,(bsp_int_cb_t)r_Config_SCI2_receiveerror_interrupt);
-
-    /* Register group BL0 interrupt TEI12 (SCI12) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI12_TEI12,(bsp_int_cb_t)r_Config_SCI12_transmitend_interrupt);
-
-    /* Register group BL1 interrupt S12CMPI0 (S12AD0) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL1_S12AD0_S12CMPI0,(bsp_int_cb_t)r_Config_S12AD0_compare_interrupt);
-
-    /* Register group BL1 interrupt S12CMPI1 (S12AD1) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL1_S12AD1_S12CMPI1,(bsp_int_cb_t)r_Config_S12AD1_compare_interrupt);
-
-    /* Disable writing to MPC pin function control registers */
-    MPC.PWPR.BIT.PFSWE = 0U;
-    MPC.PWPR.BIT.B0WI = 1U;
-
-    /* Enable protection */
-    SYSTEM.PRCR.WORD = 0xA500U;
+void R_Config_MTU0_Stop(void)
+{
+    /* Stop MTU channel 0 counter */
+    MTU.TSTRA.BIT.CST0 = 0U;
 }
 
 /* Start user code for adding. Do not edit comment generated here */

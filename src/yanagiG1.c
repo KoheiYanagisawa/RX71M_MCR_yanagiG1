@@ -34,6 +34,7 @@
 #include "timer.h"
 #include "AD12.h"
 #include "sw.h"
+#include "motor.h"
 #ifdef __cplusplus
 //#include <ios>                        // Remove the comment when you use ios
 //_SINT ios_base::Init::init_cnt;       // Remove the comment when you use ios
@@ -61,18 +62,16 @@ void main(void)
 	printf("hello2");
 	MTU4.TGRD = 5998;//トレースセンサー用PWM
 	led_out(0x1);
+	motor_mode(0,0,0,0);
+	motor_f(50,0);
 	while(1){
-		if(cnt0 == 250){
-			int num1 = 0,num2 = 0;
-			num1  = getRotarysw();
-			num2 = getTactsw();
-			//printf(" %d | %d\n\r",num1,num2);
-			printf(" %d | %d | %d | %d | %d\n\r",sensor1,sensor2,sensor3,sensor4,sensor5);
+	
+		int num1 = 0,num2 = 0;
+		num1  = getRotarysw();
+		num2 = getTactsw();
+		printf(" %d | %d\n\r",num1,num2);
 
-			cnt0 = 0;
-		}
-
-
+		
 
 
 	}

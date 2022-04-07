@@ -152,6 +152,11 @@
           <Path>src\smc_gen\Config_MTU4\Config_MTU4.h</Path>
           <Path>src\smc_gen\Config_MTU4\Config_MTU4_user.c</Path>
         </Category>
+        <Category Name="Config_MTU0">
+          <Path>src\smc_gen\Config_MTU0\Config_MTU0.c</Path>
+          <Path>src\smc_gen\Config_MTU0\Config_MTU0.h</Path>
+          <Path>src\smc_gen\Config_MTU0\Config_MTU0_user.c</Path>
+        </Category>
       </Category>
       <Category Name="Src">
         <Path>src\I2C_LCD.c</Path>
@@ -160,8 +165,8 @@
         <Path>src\yanagiG1.c</Path>
         <Path>src\AD12.c</Path>
         <Path>src\sw.c</Path>
-        <Path>Rotaryencoder.c</Path>
-        <Path>motor.c</Path>
+        <Path>src\Rotaryencoder.c</Path>
+        <Path>src\motor.c</Path>
       </Category>
       <Category Name="Inc">
         <Path>inc\AD12.h</Path>
@@ -189,6 +194,7 @@
           <Option>-isa=rxv2</Option>
           <Option>-fpu</Option>
           <Option>-lang=c99</Option>
+          <Option>-include=src\smc_gen\Config_MTU0</Option>
           <Option>-include=src\smc_gen\Config_MTU4</Option>
           <Option>-include=src\smc_gen\Config_S12AD1</Option>
           <Option>-include=inc</Option>
@@ -293,8 +299,11 @@
           <Path>DefaultBuild\sw.obj</Path>
           <Path>DefaultBuild\Rotaryencoder.obj</Path>
           <Path>DefaultBuild\motor.obj</Path>
+          <Path>DefaultBuild\Config_MTU0.obj</Path>
+          <Path>DefaultBuild\Config_MTU0_user.obj</Path>
         </LinkOrder>
         <CommonOptions>
+          <IncludePathForC>src\smc_gen\Config_MTU0</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_MTU4</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_S12AD1</IncludePathForC>
           <IncludePathForC>inc</IncludePathForC>

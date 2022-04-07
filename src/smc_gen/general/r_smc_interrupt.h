@@ -22,7 +22,7 @@
 * Version      : 1.2.2
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements interrupt setting.
-* Creation Date: 2022-03-28
+* Creation Date: 2022-04-07
 ***********************************************************************************************************************/
 
 #ifndef SMC_INTERRUPT_H

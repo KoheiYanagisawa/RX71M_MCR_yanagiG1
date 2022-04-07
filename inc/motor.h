@@ -26,13 +26,13 @@
 #define PWM_RR_OUT	    MTU0.TGRD = pwmrr
 //ここから↓要変更
 // 左前輪
-#define DIR_FL			PORTC.PODR.BIT.B2
-#define SR_FL			PORTC.PODR.BIT.B3
-#define PWM_FL_OUT	    MTU0.TGRD = pwmfl
+#define DIR_FL			PORTE.PODR.BIT.B6
+#define SR_FL			PORTE.PODR.BIT.B7
+#define PWM_FL_OUT	    MTU0.TGRC = pwmfl
 // 右前輪
-#define DIR_FR			PORTC.PODR.BIT.B2
-#define SR_FR			PORTC.PODR.BIT.B3
-#define PWM_FR_OUT	    MTU0.TGRD = pwmfr
+#define DIR_FR			PORTA.PODR.BIT.B6
+#define SR_FR			PORTA.PODR.BIT.B7
+#define PWM_FR_OUT	    MTU0.TGRA = pwmfr
 //====================================//
 // グローバル変数の宣言					//
 //====================================//
@@ -46,7 +46,7 @@ extern int8_t	sPwm;		    // サーボモーターPWM値
 // プロトタイプ宣言					   //
 //====================================//
 // モーター関連
-void motor_r_mode(uint8_t rl, uint8_t rr );
+void motor_mode(uint8_t rl, uint8_t rr );
 void motor_f( int8_t accelefL, int8_t accelefR );
 void motor_r( int8_t accelerL, int8_t accelerR );
 

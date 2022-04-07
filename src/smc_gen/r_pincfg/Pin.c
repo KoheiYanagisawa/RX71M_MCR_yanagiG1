@@ -22,7 +22,7 @@
 * Version      : 1.0.2
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements SMC pin code generation.
-* Creation Date: 2022-03-28
+* Creation Date: 2022-04-07
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -95,6 +95,14 @@ void R_Pins_Create(void)
     MPC.PD1PFS.BYTE = 0x80U;
     PORTD.PMR.BYTE &= 0xFDU;
     PORTD.PDR.BYTE &= 0xFDU;
+
+    /* Set MTIOC0A pin */
+    MPC.PB3PFS.BYTE = 0x01U;
+    PORTB.PMR.BYTE |= 0x08U;
+
+    /* Set MTIOC0C pin */
+    MPC.PB1PFS.BYTE = 0x01U;
+    PORTB.PMR.BYTE |= 0x02U;
 
     /* Set MTIOC4C pin */
     MPC.PE5PFS.BYTE = 0x01U;

@@ -17,11 +17,14 @@ int8_t	sPwm;		    // サーボモーターPWM値
 // 引数         rl, rr(0:フリーモード  1:ブレーキモード)
 // 戻り値       なし
 ///////////////////////////////////////////////////////////////////////////
-void motor_r_mode(uint8_t rl, uint8_t rr )
+void motor_mode(uint8_t rl, uint8_t rr ,uint8_t fl, uint8_t fr )
 {
 	SR_RL = rl;
 	SR_RR = rr;
+	SR_FL = fl;
+	SR_FR = fr;
 }
+
 ///////////////////////////////////////////////////////////////////////////
 // モジュール名 motor_r
 // 処理概要     後輪モーターのPWMの変更
@@ -89,41 +92,4 @@ void motor_f( int8_t accelefL, int8_t accelefR )
 		DIR_FR = REVERSE;   // 逆転
 	}
 	PWM_FR_OUT;
-}
-///////////////////////////////////////////////////////////////////////////
-// モジュール名 servoPwmOut
-// 処理概要     白線トレース時サーボのPWMの変更
-// 引数         spwm
-// 戻り値       なし
-///////////////////////////////////////////////////////////////////////////
-void servoPwmOut( signed char servopwm )
-{
-	uint16_t pwm;
-	short angle;
-	
-	sPwm = servopwm;		// ログ用変数に代入
-	//servopwm = -servopwm;		// 回転方向を変える
-	
-	// サーボリミット制御
-	angle = getServoAngle();
-	
-	// 角度によるリミット制御
-	if ( angle >= SERVO_LIMIT ) servopwm = -15;
-	if ( angle <= -SERVO_LIMIT ) servopwm = 15;
-	
-	// ポテンションメーターが外れていたら制御しない
-	if ( angle > SERVO_LIMIT + 100 ) servopwm = 0;
-	if ( angle < -SERVO_LIMIT - 100 ) servopwm = 0;
-
-	pwm = (uint16_t)TGR_SERVO * servopwm / 100;
-	// サーボモータ制御
-	if( servopwm > 0) {				
-		// 正転
-		DIR_SERVO_FOR
-	} else {				
-		// 逆転
-		pwm = -pwm;
-		DIR_SERVO_REV
-	}
-	PWM_SERVO_OUT
 }

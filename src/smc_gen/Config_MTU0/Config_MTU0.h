@@ -18,20 +18,20 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_PORT.h
-* Version      : 2.1.3
+* File Name    : Config_MTU0.h
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_PORT.
+* Description  : This file implements device driver for Config_MTU0.
 * Creation Date: 2022-04-07
 ***********************************************************************************************************************/
 
-#ifndef CFG_Config_PORT_H
-#define CFG_Config_PORT_H
+#ifndef CFG_Config_MTU0_H
+#define CFG_Config_MTU0_H
 
 /***********************************************************************************************************************
 Includes
 ***********************************************************************************************************************/
-#include "r_cg_port.h"
+#include "r_cg_mtu3.h"
 
 /***********************************************************************************************************************
 Macro definitions (Register bit)
@@ -40,6 +40,13 @@ Macro definitions (Register bit)
 /***********************************************************************************************************************
 Macro definitions
 ***********************************************************************************************************************/
+#define MTU0_PCLK_COUNTER_DIVISION      (1)
+#define _176F_TGRA0_VALUE               (0x176FU) /* TGRA0 value */
+#define _0000_TGRB0_VALUE               (0x0000U) /* TGRB0 value */
+#define _176F_TGRC0_VALUE               (0x176FU) /* TGRC0 value */
+#define _0000_TGRD0_VALUE               (0x0000U) /* TGRD0 value */
+#define _0064_TGRE0_VALUE               (0x0064U) /* TGRE0 value */
+#define _0064_TGRF0_VALUE               (0x0064U) /* TGRF0 value */
 
 /***********************************************************************************************************************
 Typedef definitions
@@ -48,8 +55,10 @@ Typedef definitions
 /***********************************************************************************************************************
 Global functions
 ***********************************************************************************************************************/
-void R_Config_PORT_Create(void);
-void R_Config_PORT_Create_UserInit(void);
+void R_Config_MTU0_Create(void);
+void R_Config_MTU0_Create_UserInit(void);
+void R_Config_MTU0_Start(void);
+void R_Config_MTU0_Stop(void);
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #endif
