@@ -51,25 +51,38 @@ void main(void)
 {
 	// LCD
 	R_Config_SCI12_Start();
-	inti_lcd();
+	init_lcd();
 	//タイマ割り込み開始
 	R_Config_CMT0_Start();
 	// PWM出力開始
 	R_Config_MTU4_Start();
+	R_Config_MTU3_Start();
+	R_Config_MTU0_Start();
 	//A/D変換開始
+	init_AD();
 	R_Config_S12AD0_Start();
 	R_Config_S12AD1_Start();
-	printf("hello2");
-	MTU4.TGRD = 5998;//トレースセンサー用PWM
-	led_out(0x1);
-	motor_mode(0,0,0,0);
-	motor_f(50,0);
-	while(1){
+	printf("hello");
 	
+	
+	motor_F_mode(0,0);
+	
+	while(1){
+		
 		int num1 = 0,num2 = 0;
 		num1  = getRotarysw();
 		num2 = getTactsw();
 		printf(" %d | %d\n\r",num1,num2);
+		if(num2 == 0){
+			led_out(0x1);
+			motor_f(0,0);
+			motor_r(0,0);
+		}
+		else if(num2 == PUSH){
+			led_out(0x2);
+			motor_f(5,5);
+			motor_r(5,5);
+		}
 
 		
 

@@ -18,20 +18,20 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_S12AD1.h
-* Version      : 1.10.1
+* File Name    : Config_MTU3.h
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_S12AD1.
+* Description  : This file implements device driver for Config_MTU3.
 * Creation Date: 2022-04-09
 ***********************************************************************************************************************/
 
-#ifndef CFG_Config_S12AD1_H
-#define CFG_Config_S12AD1_H
+#ifndef CFG_Config_MTU3_H
+#define CFG_Config_MTU3_H
 
 /***********************************************************************************************************************
 Includes
 ***********************************************************************************************************************/
-#include "r_cg_s12ad.h"
+#include "r_cg_mtu3.h"
 
 /***********************************************************************************************************************
 Macro definitions (Register bit)
@@ -40,7 +40,11 @@ Macro definitions (Register bit)
 /***********************************************************************************************************************
 Macro definitions
 ***********************************************************************************************************************/
-#define _78_AD1_SAMPLING_STATE_L           (0x78U) /* AN108-AN120 sampling time setting */
+#define MTU3_PCLK_COUNTER_DIVISION      (1)
+#define _0000_TGRA3_VALUE               (0x0000U) /* TGRA3 value */
+#define _176F_TGRB3_VALUE               (0x176FU) /* TGRB3 value */
+#define _0000_TGRC3_VALUE               (0x0000U) /* TGRC3 value */
+#define _176F_TGRD3_VALUE               (0x176FU) /* TGRD3 value */
 
 /***********************************************************************************************************************
 Typedef definitions
@@ -49,13 +53,10 @@ Typedef definitions
 /***********************************************************************************************************************
 Global functions
 ***********************************************************************************************************************/
-void R_Config_S12AD1_Create(void);
-void R_Config_S12AD1_Create_UserInit(void);
-void R_Config_S12AD1_Start(void);
-void R_Config_S12AD1_Stop(void);
-void R_Config_S12AD1_Get_ValueResult(ad_channel_t channel, uint16_t * const buffer);
-void R_Config_S12AD1_Set_CompareValue(uint16_t reg_value0,uint16_t reg_value1);
-void r_Config_S12AD1_compare_interrupt(void);
+void R_Config_MTU3_Create(void);
+void R_Config_MTU3_Create_UserInit(void);
+void R_Config_MTU3_Start(void);
+void R_Config_MTU3_Stop(void);
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #endif

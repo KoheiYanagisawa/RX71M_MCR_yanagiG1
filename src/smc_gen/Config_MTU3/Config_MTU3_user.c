@@ -14,14 +14,14 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2018 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2019 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Pin.c
-* Version      : 1.0.2
+* File Name    : Config_MTU3_user.c
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements SMC pin code generation.
+* Description  : This file implements device driver for Config_MTU3.
 * Creation Date: 2022-04-09
 ***********************************************************************************************************************/
 
@@ -35,6 +35,7 @@ Pragma directive
 Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
+#include "Config_MTU3.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
@@ -46,106 +47,17 @@ Global variables and functions
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: R_Pins_Create
-* Description  : This function initializes Smart Configurator pins
+* Function Name: R_Config_MTU3_Create_UserInit
+* Description  : This function adds user code after initializing the MTU3 channel
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Pins_Create(void)
+void R_Config_MTU3_Create_UserInit(void)
 {
-    R_BSP_RegisterProtectDisable(BSP_REG_PROTECT_MPC);
-
-    /* Set AN002 pin */
-    MPC.P42PFS.BYTE = 0x80U;
-    PORT4.PMR.BYTE &= 0xFBU;
-    PORT4.PDR.BYTE &= 0xFBU;
-
-    /* Set AN003 pin */
-    MPC.P43PFS.BYTE = 0x80U;
-    PORT4.PMR.BYTE &= 0xF7U;
-    PORT4.PDR.BYTE &= 0xF7U;
-
-    /* Set AN004 pin */
-    MPC.P44PFS.BYTE = 0x80U;
-    PORT4.PMR.BYTE &= 0xEFU;
-    PORT4.PDR.BYTE &= 0xEFU;
-
-    /* Set AN005 pin */
-    MPC.P45PFS.BYTE = 0x80U;
-    PORT4.PMR.BYTE &= 0xDFU;
-    PORT4.PDR.BYTE &= 0xDFU;
-
-    /* Set AN006 pin */
-    MPC.P46PFS.BYTE = 0x80U;
-    PORT4.PMR.BYTE &= 0xBFU;
-    PORT4.PDR.BYTE &= 0xBFU;
-
-    /* Set AN007 pin */
-    MPC.P47PFS.BYTE = 0x80U;
-    PORT4.PMR.BYTE &= 0x7FU;
-    PORT4.PDR.BYTE &= 0x7FU;
-
-    /* Set AN108 pin */
-    MPC.PD0PFS.BYTE = 0x80U;
-    PORTD.PMR.BYTE &= 0xFEU;
-    PORTD.PDR.BYTE &= 0xFEU;
-
-    /* Set AN109 pin */
-    MPC.PD1PFS.BYTE = 0x80U;
-    PORTD.PMR.BYTE &= 0xFDU;
-    PORTD.PDR.BYTE &= 0xFDU;
-
-    /* Set MTIOC0A pin */
-    MPC.PB3PFS.BYTE = 0x01U;
-    PORTB.PMR.BYTE |= 0x08U;
-
-    /* Set MTIOC0C pin */
-    MPC.PB1PFS.BYTE = 0x01U;
-    PORTB.PMR.BYTE |= 0x02U;
-
-    /* Set MTIOC3A pin */
-    MPC.PC1PFS.BYTE = 0x01U;
-    PORTC.PMR.BYTE |= 0x02U;
-
-    /* Set MTIOC3C pin */
-    MPC.PC0PFS.BYTE = 0x01U;
-    PORTC.PMR.BYTE |= 0x01U;
-
-    /* Set MTIOC4C pin */
-    MPC.PE5PFS.BYTE = 0x01U;
-    PORTE.PMR.BYTE |= 0x20U;
-
-    /* Set RXD1 pin */
-    MPC.P30PFS.BYTE = 0x0AU;
-    PORT3.PMR.BYTE |= 0x01U;
-
-    /* Set SCK2 pin */
-    MPC.P51PFS.BYTE = 0x0AU;
-    PORT5.PMR.BYTE |= 0x02U;
-
-    /* Set SMISO2 pin */
-    MPC.P52PFS.BYTE = 0x0AU;
-    PORT5.PMR.BYTE |= 0x04U;
-
-    /* Set SMOSI2 pin */
-    MPC.P50PFS.BYTE = 0x0AU;
-    PORT5.PMR.BYTE |= 0x01U;
-
-    /* Set SSCL12 pin */
-    MPC.PE2PFS.BYTE = 0x0CU;
-    PORTE.PMR.BYTE |= 0x04U;
-
-    /* Set SSDA12 pin */
-    MPC.PE1PFS.BYTE = 0x0CU;
-    PORTE.PMR.BYTE |= 0x02U;
-
-    /* Set TXD1 pin */
-    PORT2.PODR.BYTE |= 0x40U;
-    MPC.P26PFS.BYTE = 0x0AU;
-    PORT2.PDR.BYTE |= 0x40U;
-    // PORT2.PMR.BIT.B6 = 1U; // Please set the PMR bit after TE bit is set to 1.
-
-    R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_MPC);
+    /* Start user code for user init. Do not edit comment generated here */
+    /* End user code. Do not edit comment generated here */
 }
 
+/* Start user code for adding. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */

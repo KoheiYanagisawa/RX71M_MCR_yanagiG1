@@ -22,7 +22,7 @@
 * Version      : 1.4.102
 * Device(s)    : R5F571MFCxFP
 * Description  : General header file for SCIF peripheral.
-* Creation Date: 2022-04-07
+* Creation Date: 2022-04-09
 ***********************************************************************************************************************/
 
 #ifndef SCIF_H
