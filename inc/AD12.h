@@ -26,6 +26,7 @@ extern uint16_t             A1_Sen[14];
 //====================================//
 // プロトタイプ宣言					   //
 //====================================//
+void init_AD(void);
 void inttrruptAD0(void);
 void inttrruptAD1(void);
 #endif // AD12_H_
