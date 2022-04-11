@@ -55,7 +55,8 @@ void main(void)
 	//タイマ割り込み開始
 	R_Config_CMT0_Start();
 	// PWM出力開始
-	R_Config_MTU4_Start();
+	R_Config_MTU2_Start();
+	//R_Config_MTU4_Start();
 	R_Config_MTU3_Start();
 	R_Config_MTU0_Start();
 	//A/D変換開始
@@ -70,18 +71,38 @@ void main(void)
 	while(1){
 		
 		int num1 = 0,num2 = 0;
+		int spd = 0;
 		num1  = getRotarysw();
 		num2 = getTactsw();
-		printf(" %d | %d\n\r",num1,num2);
+		lcdPosition( 0, 1 );
+		lcdPrintf("tc%d ro%x",num2,num1);
+
+		spd = 5;
+
 		if(num2 == 0){
 			led_out(0x1);
 			motor_f(0,0);
 			motor_r(0,0);
 		}
-		else if(num2 == PUSH){
+		else if(num2 == DOWN){
 			led_out(0x2);
-			motor_f(5,5);
-			motor_r(5,5);
+			motor_f(spd,spd);
+			motor_r(spd,spd);
+		}
+		else if(num2 == UP){
+			led_out(0x4);
+			motor_f(-spd,-spd);
+			motor_r(-spd,-spd);
+		}
+		else if(num2 == LEFT){
+			led_out(0x5);
+			motor_f(spd,0);
+			motor_r(spd,0);
+		}
+		else if(num2 == RIGHT){
+			led_out(0x6);
+			motor_f(0,spd);
+			motor_r(0,spd);
 		}
 
 		

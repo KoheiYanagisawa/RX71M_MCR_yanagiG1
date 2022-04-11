@@ -16,14 +16,14 @@
 #define BRAKE           0		// ブレーキモード
 #define FREE            1		// フリーモード
 
-// 左後輪(pwm3,MTIOC0A)
-#define DIR_RL			PORTC.PODR.BIT.B4		// モータ回転方向(0:正転 1:逆転)
-#define SR_RL			PORTC.PODR.BIT.B5		// 0:フリーモード  1:ブレーキモード
-#define PWM_RL_OUT	    MTU3.TGRA = pwmrl		// PWM出力
-// 右後輪(pwm4,MTIOC0C)
-#define DIR_RR			PORTC.PODR.BIT.B2
-#define SR_RR			PORTC.PODR.BIT.B3
-#define PWM_RR_OUT	    MTU3.TGRC = pwmrr
+// 左後輪(pwm5,MTIOC3C)
+#define DIR_RL			PORTC.PODR.BIT.B2		// モータ回転方向(0:正転 1:逆転)
+#define SR_RL			PORTC.PODR.BIT.B3		// 0:フリーモード  1:ブレーキモード
+#define PWM_RL_OUT	    MTU3.TGRD = pwmrl		// PWM出力
+// 右後輪(pwm3,MTIOC2A)
+#define DIR_RR			PORTB.PODR.BIT.B6
+#define SR_RR			PORTB.PODR.BIT.B7
+#define PWM_RR_OUT	    MTU2.TGRB = pwmrr
 //ここから↓要変更
 // 左前輪
 #define DIR_FL			PORTE.PODR.BIT.B6

@@ -22,7 +22,7 @@
 * Version      : 1.4.102
 * Device(s)    : R5F571MFCxFP
 * Description  : SMC platform header file.
-* Creation Date: 2022-04-09
+* Creation Date: 2022-04-11
 ***********************************************************************************************************************/
 
 #ifndef SMC_ENTRY_H
@@ -42,6 +42,7 @@ Includes
 #include "Config_S12AD0.h"
 #include "Config_MTU0.h"
 #include "Config_MTU3.h"
+#include "Config_MTU2.h"
 
 /***********************************************************************************************************************
 Macro definitions (Register bit)

@@ -22,7 +22,7 @@
 * Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_MTU3.
-* Creation Date: 2022-04-09
+* Creation Date: 2022-04-11
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -66,24 +66,20 @@ void R_Config_MTU3_Create(void)
 
     /* MTU channel 3 is used as PWM mode 1 */
     MTU.TSYRA.BIT.SYNC3 = 0U;
-    MTU3.TCR.BYTE = _00_MTU_PCLK_1 | _40_MTU_CKCL_B;
+    MTU3.TCR.BYTE = _00_MTU_PCLK_1 | _20_MTU_CKCL_A;
     MTU3.TCR2.BYTE = _00_MTU_PCLK_1;
     MTU3.TIER.BYTE = _00_MTU_TGIEA_DISABLE | _00_MTU_TGIEB_DISABLE | _00_MTU_TGIEC_DISABLE | _00_MTU_TGIED_DISABLE | 
                      _00_MTU_TCIEV_DISABLE | _00_MTU_TTGE_DISABLE;
     MTU3.TMDR1.BYTE = _02_MTU_PWM1;
-    MTU3.TIORH.BYTE = _01_MTU_IOA_LL | _60_MTU_IOB_HH;
-    MTU3.TIORL.BYTE = _01_MTU_IOC_LL | _60_MTU_IOD_HH;
-    MTU3.TGRA = _0000_TGRA3_VALUE;
-    MTU3.TGRB = _176F_TGRB3_VALUE;
-    MTU3.TGRC = _0000_TGRC3_VALUE;
-    MTU3.TGRD = _176F_TGRD3_VALUE;
+    MTU3.TIORH.BYTE = _00_MTU_IOA_DISABLE;
+    MTU3.TIORL.BYTE = _02_MTU_IOC_LH | _50_MTU_IOD_HL;
+    MTU3.TGRA = _176F_TGRA3_VALUE;
+    MTU3.TGRB = _0000_TGRB3_VALUE;
+    MTU3.TGRC = _176F_TGRC3_VALUE;
+    MTU3.TGRD = _0000_TGRD3_VALUE;
 
     /* Disable read/write to MTU3 registers */
     MTU.TRWERA.BIT.RWE = 0U;
-
-    /* Set MTIOC3A pin */
-    MPC.PC1PFS.BYTE = 0x01U;
-    PORTC.PMR.BYTE |= 0x02U;
 
     /* Set MTIOC3C pin */
     MPC.PC0PFS.BYTE = 0x01U;

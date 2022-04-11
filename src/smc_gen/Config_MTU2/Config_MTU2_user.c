@@ -18,10 +18,10 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : r_cg_hardware_setup.c
-* Version      : 1.4.102
+* File Name    : Config_MTU2_user.c
+* Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : Initialization file for code generation configurations.
+* Description  : This file implements device driver for Config_MTU2.
 * Creation Date: 2022-04-11
 ***********************************************************************************************************************/
 
@@ -35,19 +35,7 @@ Pragma directive
 Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
-#include "Config_CMT0.h"
-#include "Config_PORT.h"
-#include "Config_SCI12.h"
-#include "Config_SCI2.h"
-#include "Config_SCI1.h"
-#include "Config_S12AD1.h"
-#include "Config_MTU4.h"
-#include "Config_S12AD0.h"
-#include "Config_MTU0.h"
-#include "Config_MTU3.h"
 #include "Config_MTU2.h"
-#include "r_smc_cgc.h"
-#include "r_smc_interrupt.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
@@ -59,87 +47,16 @@ Global variables and functions
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: r_undefined_exception
-* Description  : This function is undefined interrupt service routine
+* Function Name: R_Config_MTU2_Create_UserInit
+* Description  : This function adds user code after initializing the MTU2 channel
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void r_undefined_exception(void)
+void R_Config_MTU2_Create_UserInit(void)
 {
-    /* Start user code for r_undefined_exception. Do not edit comment generated here */
+    /* Start user code for user init. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
-}
-
-/***********************************************************************************************************************
-* Function Name: R_Systeminit
-* Description  : This function initializes every configuration
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-
-void R_Systeminit(void)
-{
-    /* Enable writing to registers related to operating modes, LPC, CGC and software reset */
-    SYSTEM.PRCR.WORD = 0xA50BU;
-
-    /* Enable writing to MPC pin function control registers */
-    MPC.PWPR.BIT.B0WI = 0U;
-    MPC.PWPR.BIT.PFSWE = 1U;
-
-    /* Write 0 to the target bits in the POECR2 and POECR3 registers */
-    POE3.POECR2.WORD = 0x0000U;
-    POE3.POECR3.WORD = 0x0000U;
-
-    /* Initialize clocks settings */
-    R_CGC_Create();
-
-    /* Set peripheral settings */
-    R_Config_PORT_Create();
-    R_Config_CMT0_Create();
-    R_Config_SCI12_Create();
-    R_Config_SCI2_Create();
-    R_Config_SCI1_Create();
-    R_Config_S12AD1_Create();
-    R_Config_MTU4_Create();
-    R_Config_S12AD0_Create();
-    R_Config_MTU0_Create();
-    R_Config_MTU3_Create();
-    R_Config_MTU2_Create();
-
-    /* Set interrupt settings */
-    R_Interrupt_Create();
-
-    /* Register undefined interrupt */
-    R_BSP_InterruptWrite(BSP_INT_SRC_UNDEFINED_INTERRUPT,(bsp_int_cb_t)r_undefined_exception);
-
-    /* Register group BL0 interrupt TEI1 (SCI1) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI1_TEI1,(bsp_int_cb_t)r_Config_SCI1_transmitend_interrupt);
-
-    /* Register group BL0 interrupt ERI1 (SCI1) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI1_ERI1,(bsp_int_cb_t)r_Config_SCI1_receiveerror_interrupt);
-
-    /* Register group BL0 interrupt TEI2 (SCI2) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI2_TEI2,(bsp_int_cb_t)r_Config_SCI2_transmitend_interrupt);
-
-    /* Register group BL0 interrupt ERI2 (SCI2) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI2_ERI2,(bsp_int_cb_t)r_Config_SCI2_receiveerror_interrupt);
-
-    /* Register group BL0 interrupt TEI12 (SCI12) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL0_SCI12_TEI12,(bsp_int_cb_t)r_Config_SCI12_transmitend_interrupt);
-
-    /* Register group BL1 interrupt S12CMPI0 (S12AD0) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL1_S12AD0_S12CMPI0,(bsp_int_cb_t)r_Config_S12AD0_compare_interrupt);
-
-    /* Register group BL1 interrupt S12CMPI1 (S12AD1) */
-    R_BSP_InterruptWrite(BSP_INT_SRC_BL1_S12AD1_S12CMPI1,(bsp_int_cb_t)r_Config_S12AD1_compare_interrupt);
-
-    /* Disable writing to MPC pin function control registers */
-    MPC.PWPR.BIT.PFSWE = 0U;
-    MPC.PWPR.BIT.B0WI = 1U;
-
-    /* Enable protection */
-    SYSTEM.PRCR.WORD = 0xA500U;
 }
 
 /* Start user code for adding. Do not edit comment generated here */

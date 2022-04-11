@@ -22,7 +22,7 @@
 * Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_MTU3.
-* Creation Date: 2022-04-09
+* Creation Date: 2022-04-11
 ***********************************************************************************************************************/
 
 #ifndef CFG_Config_MTU3_H
@@ -41,10 +41,10 @@ Macro definitions (Register bit)
 Macro definitions
 ***********************************************************************************************************************/
 #define MTU3_PCLK_COUNTER_DIVISION      (1)
-#define _0000_TGRA3_VALUE               (0x0000U) /* TGRA3 value */
-#define _176F_TGRB3_VALUE               (0x176FU) /* TGRB3 value */
-#define _0000_TGRC3_VALUE               (0x0000U) /* TGRC3 value */
-#define _176F_TGRD3_VALUE               (0x176FU) /* TGRD3 value */
+#define _176F_TGRA3_VALUE               (0x176FU) /* TGRA3 value */
+#define _0000_TGRB3_VALUE               (0x0000U) /* TGRB3 value */
+#define _176F_TGRC3_VALUE               (0x176FU) /* TGRC3 value */
+#define _0000_TGRD3_VALUE               (0x0000U) /* TGRD3 value */
 
 /***********************************************************************************************************************
 Typedef definitions

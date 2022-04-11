@@ -18,15 +18,15 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_MTU4.h
+* File Name    : Config_MTU2.h
 * Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_MTU4.
+* Description  : This file implements device driver for Config_MTU2.
 * Creation Date: 2022-04-11
 ***********************************************************************************************************************/
 
-#ifndef CFG_Config_MTU4_H
-#define CFG_Config_MTU4_H
+#ifndef CFG_Config_MTU2_H
+#define CFG_Config_MTU2_H
 
 /***********************************************************************************************************************
 Includes
@@ -40,11 +40,9 @@ Macro definitions (Register bit)
 /***********************************************************************************************************************
 Macro definitions
 ***********************************************************************************************************************/
-#define MTU4_PCLK_COUNTER_DIVISION      (1)
-#define _0000_TGRA4_VALUE               (0x0000U) /* TGRA4 value */
-#define _0000_TGRB4_VALUE               (0x0000U) /* TGRB4 value */
-#define _176F_TGRC4_VALUE               (0x176FU) /* TGRC4 value */
-#define _0000_TGRD4_VALUE               (0x0000U) /* TGRD4 value */
+#define MTU2_PCLK_COUNTER_DIVISION      (1)
+#define _176F_TGRA2_VALUE               (0x176FU) /* TGRA2 value */
+#define _0000_TGRB2_VALUE               (0x0000U) /* TGRB2 value */
 
 /***********************************************************************************************************************
 Typedef definitions
@@ -53,10 +51,10 @@ Typedef definitions
 /***********************************************************************************************************************
 Global functions
 ***********************************************************************************************************************/
-void R_Config_MTU4_Create(void);
-void R_Config_MTU4_Create_UserInit(void);
-void R_Config_MTU4_Start(void);
-void R_Config_MTU4_Stop(void);
+void R_Config_MTU2_Create(void);
+void R_Config_MTU2_Create_UserInit(void);
+void R_Config_MTU2_Start(void);
+void R_Config_MTU2_Stop(void);
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 #endif

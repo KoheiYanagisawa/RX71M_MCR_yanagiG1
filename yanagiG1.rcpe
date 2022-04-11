@@ -162,6 +162,11 @@
           <Path>src\smc_gen\Config_MTU3\Config_MTU3.h</Path>
           <Path>src\smc_gen\Config_MTU3\Config_MTU3_user.c</Path>
         </Category>
+        <Category Name="Config_MTU2">
+          <Path>src\smc_gen\Config_MTU2\Config_MTU2.c</Path>
+          <Path>src\smc_gen\Config_MTU2\Config_MTU2.h</Path>
+          <Path>src\smc_gen\Config_MTU2\Config_MTU2_user.c</Path>
+        </Category>
       </Category>
       <Category Name="Src">
         <Path>src\I2C_LCD.c</Path>
@@ -199,6 +204,7 @@
           <Option>-isa=rxv2</Option>
           <Option>-fpu</Option>
           <Option>-lang=c99</Option>
+          <Option>-include=src\smc_gen\Config_MTU2</Option>
           <Option>-include=src\smc_gen\Config_MTU3</Option>
           <Option>-include=src\smc_gen\Config_MTU0</Option>
           <Option>-include=src\smc_gen\Config_MTU4</Option>
@@ -309,8 +315,11 @@
           <Path>DefaultBuild\Config_MTU0_user.obj</Path>
           <Path>DefaultBuild\Config_MTU3.obj</Path>
           <Path>DefaultBuild\Config_MTU3_user.obj</Path>
+          <Path>DefaultBuild\Config_MTU2.obj</Path>
+          <Path>DefaultBuild\Config_MTU2_user.obj</Path>
         </LinkOrder>
         <CommonOptions>
+          <IncludePathForC>src\smc_gen\Config_MTU2</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_MTU3</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_MTU0</IncludePathForC>
           <IncludePathForC>src\smc_gen\Config_MTU4</IncludePathForC>
