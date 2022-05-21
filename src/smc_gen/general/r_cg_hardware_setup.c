@@ -22,7 +22,7 @@
 * Version      : 1.4.102
 * Device(s)    : R5F571MFCxFP
 * Description  : Initialization file for code generation configurations.
-* Creation Date: 2022-04-11
+* Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -46,6 +46,7 @@ Includes
 #include "Config_MTU0.h"
 #include "Config_MTU3.h"
 #include "Config_MTU2.h"
+#include "Config_MTU1.h"
 #include "r_smc_cgc.h"
 #include "r_smc_interrupt.h"
 /* Start user code for include. Do not edit comment generated here */
@@ -106,6 +107,7 @@ void R_Systeminit(void)
     R_Config_MTU0_Create();
     R_Config_MTU3_Create();
     R_Config_MTU2_Create();
+    R_Config_MTU1_Create();
 
     /* Set interrupt settings */
     R_Interrupt_Create();

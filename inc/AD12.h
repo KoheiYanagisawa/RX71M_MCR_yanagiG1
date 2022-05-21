@@ -7,6 +7,7 @@
 //====================================//
 // シンボル定義						   //
 //====================================//
+#define voltc               A1_Sen[11]          //電圧チェック
 #define sensorRR            A1_Sen[10]          //最右端アナログセンサ
 #define sensorR             A1_Sen[9]           //右アナログセンサ
 #define sensorC             A0_Sen[7]           //中心アナログセンサ
@@ -23,10 +24,15 @@
 //====================================//
 extern uint16_t             A0_Sen[8];
 extern uint16_t             A1_Sen[14];
+extern double               Voltage;
+extern short                Angle0;
+extern short                sensorG_th;
 //====================================//
 // プロトタイプ宣言					   //
 //====================================//
 void init_AD(void);
 void inttrruptAD0(void);
 void inttrruptAD1(void);
+void getVoltage ( void );
+unsigned char startbar_get(void);
 #endif // AD12_H_

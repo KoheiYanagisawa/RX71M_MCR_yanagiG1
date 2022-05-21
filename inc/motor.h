@@ -19,20 +19,28 @@
 // 左後輪(pwm5,MTIOC3C)
 #define DIR_RL			PORTC.PODR.BIT.B2		// モータ回転方向(0:正転 1:逆転)
 #define SR_RL			PORTC.PODR.BIT.B3		// 0:フリーモード  1:ブレーキモード
-#define PWM_RL_OUT	    MTU3.TGRD = pwmrl		// PWM出力
+#define PWM_RL_OUT	    MTU3.TGRD = pwmrl			// PWM出力
 // 右後輪(pwm3,MTIOC2A)
-#define DIR_RR			PORTB.PODR.BIT.B6
-#define SR_RR			PORTB.PODR.BIT.B7
-#define PWM_RR_OUT	    MTU2.TGRB = pwmrr
-//ここから↓要変更
-// 左前輪
+//#define DIR_RR			PORTB.PODR.BIT.B6
+//#define SR_RR			PORTB.PODR.BIT.B7
+//#define PWM_RR_OUT	    MTU2.TGRB = pwmrr
+//(pwm4,MTIOC3A)
+#define DIR_RR			PORTC.PODR.BIT.B4
+#define SR_RR			PORTC.PODR.BIT.B5
+#define PWM_RR_OUT	    MTU3.TGRB = pwmrr
+// 左前輪(pwm2,MTIOC0C)
 #define DIR_FL			PORTE.PODR.BIT.B6
 #define SR_FL			PORTE.PODR.BIT.B7
 #define PWM_FL_OUT	    MTU0.TGRB = pwmfl
-// 右前輪
+// 右前輪(pwm1,MTIOC0A)
 #define DIR_FR			PORTA.PODR.BIT.B6
 #define SR_FR			PORTA.PODR.BIT.B7
 #define PWM_FR_OUT	    MTU0.TGRD = pwmfr
+
+//サーボ(pwm6,MTIOC4C)
+#define DIR_SERVO       PORTE.PODR.BIT.B3
+#define SR_SERVO        PORTE.PODR.BIT.B4
+#define PWM_SERVO_OUT   MTU4.TGRB = pwm
 //====================================//
 // グローバル変数の宣言					//
 //====================================//
@@ -50,6 +58,7 @@ void motor_R_mode(uint8_t rl, uint8_t rr );
 void motor_F_mode(uint8_t fl, uint8_t fr );
 void motor_f( int8_t accelefL, int8_t accelefR );
 void motor_r( int8_t accelerL, int8_t accelerR );
+void motorPwmOut( int8_t accelefL, int8_t accelefR, int8_t accelerL, int8_t accelerR );
 
 // サーボ関連
 void servoPwmOut( int8_t pwm );

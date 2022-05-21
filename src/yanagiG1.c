@@ -35,6 +35,7 @@
 #include "AD12.h"
 #include "sw.h"
 #include "motor.h"
+#include "Rotaryencoder.h"
 #ifdef __cplusplus
 //#include <ios>                        // Remove the comment when you use ios
 //_SINT ios_base::Init::init_cnt;       // Remove the comment when you use ios
@@ -54,11 +55,13 @@ void main(void)
 	init_lcd();
 	//タイマ割り込み開始
 	R_Config_CMT0_Start();
+	//位相計測開始
+	R_Config_MTU1_Start();
 	// PWM出力開始
-	R_Config_MTU2_Start();
-	//R_Config_MTU4_Start();
-	R_Config_MTU3_Start();
 	R_Config_MTU0_Start();
+	R_Config_MTU2_Start();
+	R_Config_MTU4_Start();
+	R_Config_MTU3_Start();
 	//A/D変換開始
 	init_AD();
 	R_Config_S12AD0_Start();
@@ -69,13 +72,15 @@ void main(void)
 	motor_F_mode(0,0);
 	
 	while(1){
-		
-		int num1 = 0,num2 = 0;
+		MTU3.TGRB =500;
+		int num1 = 0,num2 = 0,num3 = ENCODER_COUNT;
 		int spd = 0;
 		num1  = getRotarysw();
 		num2 = getTactsw();
 		lcdPosition( 0, 1 );
 		lcdPrintf("tc%d ro%x",num2,num1);
+		lcdPosition( 0, 0 );
+		printf("%d\n\r",num3);
 
 		spd = 5;
 

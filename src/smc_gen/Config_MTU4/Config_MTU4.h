@@ -22,7 +22,7 @@
 * Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_MTU4.
-* Creation Date: 2022-04-11
+* Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
 #ifndef CFG_Config_MTU4_H
@@ -41,7 +41,7 @@ Macro definitions (Register bit)
 Macro definitions
 ***********************************************************************************************************************/
 #define MTU4_PCLK_COUNTER_DIVISION      (1)
-#define _0000_TGRA4_VALUE               (0x0000U) /* TGRA4 value */
+#define _176F_TGRA4_VALUE               (0x176FU) /* TGRA4 value */
 #define _0000_TGRB4_VALUE               (0x0000U) /* TGRB4 value */
 #define _176F_TGRC4_VALUE               (0x176FU) /* TGRC4 value */
 #define _0000_TGRD4_VALUE               (0x0000U) /* TGRD4 value */

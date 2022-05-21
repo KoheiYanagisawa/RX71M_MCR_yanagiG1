@@ -22,7 +22,7 @@
 * Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_MTU3.
-* Creation Date: 2022-04-11
+* Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -71,15 +71,19 @@ void R_Config_MTU3_Create(void)
     MTU3.TIER.BYTE = _00_MTU_TGIEA_DISABLE | _00_MTU_TGIEB_DISABLE | _00_MTU_TGIEC_DISABLE | _00_MTU_TGIED_DISABLE | 
                      _00_MTU_TCIEV_DISABLE | _00_MTU_TTGE_DISABLE;
     MTU3.TMDR1.BYTE = _02_MTU_PWM1;
-    MTU3.TIORH.BYTE = _00_MTU_IOA_DISABLE;
+    MTU3.TIORH.BYTE = _02_MTU_IOA_LH | _50_MTU_IOB_HL;
     MTU3.TIORL.BYTE = _02_MTU_IOC_LH | _50_MTU_IOD_HL;
     MTU3.TGRA = _176F_TGRA3_VALUE;
-    MTU3.TGRB = _0000_TGRB3_VALUE;
+    MTU3.TGRB = _01F4_TGRB3_VALUE;
     MTU3.TGRC = _176F_TGRC3_VALUE;
     MTU3.TGRD = _0000_TGRD3_VALUE;
 
     /* Disable read/write to MTU3 registers */
     MTU.TRWERA.BIT.RWE = 0U;
+
+    /* Set MTIOC3A pin */
+    MPC.PC1PFS.BYTE = 0x01U;
+    PORTC.PMR.BYTE |= 0x02U;
 
     /* Set MTIOC3C pin */
     MPC.PC0PFS.BYTE = 0x01U;

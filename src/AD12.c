@@ -15,6 +15,8 @@ static char				ADTimer10;	// AD変換カウント用
 uint16_t            A0_Sen[8];              //AD0チャンネルの格納先
 uint16_t            A1_Sen[14];             //AD1チャンネルの格納先
 
+double				Voltage;				//AD値から推測した電源電圧
+
 short               Angle0;                 //サーボセンター値
 short	            sensorG_th = GATE_VAL;	// ゲート開放しきい値
 
@@ -51,6 +53,7 @@ void inttrruptAD0(void) {
 void inttrruptAD1(void) {
     R_Config_S12AD1_Get_ValueResult(ADCHANNEL8,&sensorR);
     R_Config_S12AD1_Get_ValueResult(ADCHANNEL9,&sensorRR);
+	R_Config_S12AD1_Get_ValueResult(ADCHANNEL11,&voltc);
 }
 ///////////////////////////////////////////////////////////////////////////
 // モジュール名 getServoAngle
@@ -90,6 +93,17 @@ unsigned char sensor_inp(void)
 	else l = 0;
 	
 	return l+c+r;
+}
+/////////////////////////////////////////////////////////////////////
+// モジュール名 getVoltage
+// 処理概要     電圧の取得
+// 引数         なし
+// 戻り値       な
+/////////////////////////////////////////////////////////////////////
+void getVoltage ( void )
+{
+	// AD値 * R1 * R2 / 分解能
+	Voltage = voltc * 5.05 * 3.94 / 4096;
 }
 ///////////////////////////////////////////////////////////////////////////
 // モジュール名 startbar_get

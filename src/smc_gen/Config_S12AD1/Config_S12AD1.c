@@ -22,7 +22,7 @@
 * Version      : 1.10.1
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_S12AD1.
-* Creation Date: 2022-04-11
+* Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -72,8 +72,8 @@ void R_Config_S12AD1_Create(void)
     S12AD1.ADADC.BYTE = _01_AD_2_TIME_CONVERSION | _80_AD_AVERAGE_MODE;
 
     /* Set channels and sampling time */
-    S12AD1.ADANSA0.WORD = _0100_AD_AN108_USED | _0200_AD_AN109_USED;
-    S12AD1.ADADS0.WORD = _0100_AD_AN108_ADD_USED | _0200_AD_AN109_ADD_USED;
+    S12AD1.ADANSA0.WORD = _0100_AD_AN108_USED | _0200_AD_AN109_USED | _0800_AD_AN111_USED;
+    S12AD1.ADADS0.WORD = _0100_AD_AN108_ADD_USED | _0200_AD_AN109_ADD_USED | _0800_AD_AN111_ADD_USED;
     S12AD1.ADSSTRL = _78_AD1_SAMPLING_STATE_L;
 
     /* Set compare control register */
@@ -93,6 +93,11 @@ void R_Config_S12AD1_Create(void)
     PORTD.PMR.BYTE &= 0xFDU;
     PORTD.PDR.BYTE &= 0xFDU;
     MPC.PD1PFS.BYTE = 0x80U;
+
+    /* Set AN111 pin */
+    PORTD.PMR.BYTE &= 0xF7U;
+    PORTD.PDR.BYTE &= 0xF7U;
+    MPC.PD3PFS.BYTE = 0x80U;
 
     R_Config_S12AD1_Create_UserInit();
 }

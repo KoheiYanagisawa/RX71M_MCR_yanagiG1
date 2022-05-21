@@ -18,10 +18,10 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_PORT_user.c
-* Version      : 2.1.3
+* File Name    : Config_MTU1_user.c
+* Version      : 2.1.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_PORT.
+* Description  : This file implements device driver for Config_MTU1.
 * Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
@@ -35,8 +35,9 @@ Pragma directive
 Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
-#include "Config_PORT.h"
+#include "Config_MTU1.h"
 /* Start user code for include. Do not edit comment generated here */
+#include "Rotaryencoder.h"
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
@@ -44,21 +45,60 @@ Includes
 Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
+unsigned int 	ENCODER_COUNT;
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: R_Config_PORT_Create_UserInit
-* Description  : This function adds user code after initializing PORT
+* Function Name: R_Config_MTU1_Create_UserInit
+* Description  : This function adds user code after initializing the MTU1 channel
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Config_PORT_Create_UserInit(void)
+void R_Config_MTU1_Create_UserInit(void)
 {
     /* Start user code for user init. Do not edit comment generated here */
+    ENCODER_COUNT = 0;
+    /* End user code. Do not edit comment generated here */
+}
+
+/***********************************************************************************************************************
+* Function Name: r_Config_MTU1_tgia1_interrupt
+* Description  : This function is TGIA1 interrupt service routine
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+
+#if FAST_INTERRUPT_VECTOR == VECT_PERIA_INTA208
+#pragma interrupt r_Config_MTU1_tgia1_interrupt(vect=VECT(PERIA,INTA208),fint)
+#else
+#pragma interrupt r_Config_MTU1_tgia1_interrupt(vect=VECT(PERIA,INTA208))
+#endif
+static void r_Config_MTU1_tgia1_interrupt(void)
+{
+    /* Start user code for r_Config_MTU1_tgia1_interrupt. Do not edit comment generated here */
+    ENCODER_COUNT ++;
+    /* End user code. Do not edit comment generated here */
+}
+
+/***********************************************************************************************************************
+* Function Name: r_Config_MTU1_tgib1_interrupt
+* Description  : This function is TGIB1 interrupt service routine
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+
+#if FAST_INTERRUPT_VECTOR == VECT_PERIA_INTA216
+#pragma interrupt r_Config_MTU1_tgib1_interrupt(vect=VECT(PERIA,INTA216),fint)
+#else
+#pragma interrupt r_Config_MTU1_tgib1_interrupt(vect=VECT(PERIA,INTA216))
+#endif
+static void r_Config_MTU1_tgib1_interrupt(void)
+{
+    /* Start user code for r_Config_MTU1_tgib1_interrupt. Do not edit comment generated here */
+    
     /* End user code. Do not edit comment generated here */
 }
 
 /* Start user code for adding. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-

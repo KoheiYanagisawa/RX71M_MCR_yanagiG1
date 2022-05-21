@@ -22,7 +22,7 @@
 * Version      : 1.9.1
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_MTU2.
-* Creation Date: 2022-04-11
+* Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -44,6 +44,7 @@ Includes
 Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
+
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
@@ -56,6 +57,7 @@ Global variables and functions
 void R_Config_MTU2_Create_UserInit(void)
 {
     /* Start user code for user init. Do not edit comment generated here */
+
     /* End user code. Do not edit comment generated here */
 }
 

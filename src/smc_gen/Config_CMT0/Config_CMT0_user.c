@@ -22,7 +22,7 @@
 * Version      : 2.0.2
 * Device(s)    : R5F571MFCxFP
 * Description  : This file implements device driver for Config_CMT0.
-* Creation Date: 2022-04-11
+* Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -40,6 +40,7 @@ Includes
 #include "I2c_LCD.h"
 #include "IMU_ICM20648.h"
 #include "AD12.h"
+#include "Rotaryencoder.h"
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
@@ -82,7 +83,7 @@ static void r_Config_CMT0_cmi0_interrupt(void)
     /* Start user code for r_Config_CMT0_cmi0_interrupt. Do not edit comment generated here */
     __setpsw_i(); //ëΩèdäÑçûÇ›ãñâ¬
     lcdShowProcess();
-    
+    //getEncoder();
 
     
     cnt0++;

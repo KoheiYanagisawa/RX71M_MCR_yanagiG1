@@ -18,47 +18,42 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : Config_PORT_user.c
-* Version      : 2.1.3
+* File Name    : Config_MTU1.h
+* Version      : 2.1.1
 * Device(s)    : R5F571MFCxFP
-* Description  : This file implements device driver for Config_PORT.
+* Description  : This file implements device driver for Config_MTU1.
 * Creation Date: 2022-05-21
 ***********************************************************************************************************************/
 
-/***********************************************************************************************************************
-Pragma directive
-***********************************************************************************************************************/
-/* Start user code for pragma. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
+#ifndef CFG_Config_MTU1_H
+#define CFG_Config_MTU1_H
 
 /***********************************************************************************************************************
 Includes
 ***********************************************************************************************************************/
-#include "r_cg_macrodriver.h"
-#include "Config_PORT.h"
-/* Start user code for include. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
-#include "r_cg_userdefine.h"
+#include "r_cg_mtu3.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+Macro definitions (Register bit)
 ***********************************************************************************************************************/
-/* Start user code for global. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: R_Config_PORT_Create_UserInit
-* Description  : This function adds user code after initializing PORT
-* Arguments    : None
-* Return Value : None
+Macro definitions
+***********************************************************************************************************************/
+#define _0063_TGRA1_VALUE               (0x0063U) /* TGRA1 value */
+#define _0063_TGRB1_VALUE               (0x0063U) /* TGRB1 value */
+
+/***********************************************************************************************************************
+Typedef definitions
 ***********************************************************************************************************************/
 
-void R_Config_PORT_Create_UserInit(void)
-{
-    /* Start user code for user init. Do not edit comment generated here */
-    /* End user code. Do not edit comment generated here */
-}
-
-/* Start user code for adding. Do not edit comment generated here */
+/***********************************************************************************************************************
+Global functions
+***********************************************************************************************************************/
+void R_Config_MTU1_Create(void);
+void R_Config_MTU1_Create_UserInit(void);
+void R_Config_MTU1_Start(void);
+void R_Config_MTU1_Stop(void);
+/* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-
+#endif
